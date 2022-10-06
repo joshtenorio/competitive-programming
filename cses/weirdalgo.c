@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main(){
-    int n;
-    scanf("%d", &n);
+    long n;
+    scanf("%ld", &n);
 
-    printf("%d ", n);
+    printf("%ld ", n);
     while(n != 1){
         if(n % 2 == 0){
             n /= 2;
@@ -13,7 +13,8 @@ int main(){
             n *= 3;
             n++;
         }
-        printf("%d ", n);
+        printf("%ld ", n);
     }
     return 0;
 }
+
