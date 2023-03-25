@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+int min (int a, int b) {
+    return a < b ? a : b;
+}
+
+int max (int a, int b) {
+    return a > b ? a : b;
+}
+
 int main() {
 	int t;
 	scanf("%d", &t);
@@ -7,15 +15,25 @@ int main() {
 	for (int i = 0; i < t; i++) {
 		int a,b;
 		scanf("%d %d", &a, &b);
-		if (a == 0 && b == 0) printf("YES\n");
-		else if (a == 0 || b == 0) printf("NO\n");
-		else if (a / 2 == b || b / 2 == a) {
-			printf("YES\n");
-		}
-		else if (a % 3 == 0 && b % 3 == 0) {
-			printf("YES\n");
-		}
-		else printf("NO\n");
-	}
+        int s = a + b, mi = min(a, b), ma = max(a, b);
+
+        if (!s) {
+            printf("YES\n");
+            continue;
+        }
+        
+        if (!a || !b || ((ma-mi) > mi) || (a == b && a % 3)) {
+            printf("NO\n");
+            continue;
+        }
+
+       if (s % 3 == 0) {
+          printf("YES\n");
+       }
+       else {
+          printf("NO\n");
+       } 
+        
+    }
 	return 0;
 }
