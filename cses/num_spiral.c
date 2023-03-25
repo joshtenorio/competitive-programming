@@ -1,46 +1,42 @@
 #include <stdio.h>
+#include <math.h>
 
-int abs(int x) {
-    if (x >= 0) return x;
-    else return x * -1;
+int min(int x, int y) {
+    if (x < y) return x;
+    else return y;
 }
 
-int getSection(int col) {
-    if (col % 2 == 0) {
-        return 0;
-    }
-    else return col*col;
+int max(int x, int y) {
+    if (x > y) return x;
+    else return y;
 }
+
+#define ll long long
+
 int main(){
     int t;
     scanf("%d", &t);
     for (int i = 0; i < t; i++){
-        int y, x; // row, column
-        scanf("%d %d", &y, &x);
+        ll y, x; // row, column
+        scanf("%lld %lld", &y, &x);
+        
+        ll z = max(x,y);
+        ll mi = min(x,y);
+        ll z2 = z*z, ans;
 
-
-        if (x == y){ // row = column
-            printf("%d\n", x*x - x+1);
+        if (z % 2 == 0) {
+            if (z == y)
+                ans = z2 - mi + 1;
+            else
+                ans = (z-1)*(z-1)+mi;
         }
-        else if (x > y) {
-            if (x % 2 == 1) {
-                int base = getSection(x);
-                printf("%d\n", base - y + 1);
-            }
-            else {
-                int base = getSection(x-1) + 1;
-                printf("%d\n", base + y -1);
-            }
+        else {
+            if (z == y)
+                ans = (z-1)*(z-1)+mi;
+            else
+                ans = z2 - mi + 1;
         }
-        else { 
-            if (y % 2 == 1) {
-                int base = getSection(y);
-                printf("%d\n", base + x - 1);
-            }
-            else {
-                int base = getSection(y-1) + 1;
-                printf("%d\n", base - x +1);
-            }
-        }
+        printf("%lld\n", ans);
+        
     }
 }
